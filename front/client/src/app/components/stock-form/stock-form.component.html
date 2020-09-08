@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="row distance">
+        <h3 *ngIf="edit">Update Stock: </h3>
+        <h3 *ngIf="!edit">Add Stock: </h3>
+    </div>
+
+
+    <form>
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="form-group">
+                    <label>Quantity: </label>
+                    <input type="number" name="quantity" [min]="0" [(ngModel)]="stockSimple.quantity" placeholder="Quantity" class="form-control">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="form-group">
+                    <label>Id Client (Name): </label>
+                    <select class="form-control" (change)="stockSimple.id_client = $event.target.value">
+                        <option *ngFor="let client of clients" [value]="client.id" [selected]="stockSimple.id_client === client.id">{{client.id}} ({{client.name}})</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="form-group">
+                    <label>Id Product (Name): </label>
+                    <select class="form-control" (change)="stockSimple.id_product = $event.target.value">
+                        <option *ngFor="let product of products" [value]="product.id" [selected]="stockSimple.id_product === product.id">{{product.id}} ({{product.name}})</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-12">
+                <button *ngIf="edit" class="btn btn-primary btn-block" (click)="updateStock()">Update</button>
+                <button *ngIf="!edit" class="btn btn-success btn-block" (click)="saveNewStock()">Save</button>
+            </div>
+        </div>
+    </form>
+
+
+    <div class="row distance marginTitle">
+        <h3>Clients: </h3>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let client of clients">
+            <div class="card card-body text-center distance pick-item" [ngClass]="{'pick-item-seleccionado': stockSimple.id_client == client.id}" (click)="stockSimple.id_client = client.id">
+                <h5><b>{{client.id}}. {{client.name == '' ? 'Client Name' : client.name}}</b></h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="row distance marginTitle">
+        <h3>Products: </h3>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let product of products">
+            <div class="card card-body text-center distance pick-item" [ngClass]="{'pick-item-seleccionado': stockSimple.id_product == product.id}" (click)="stockSimple.id_product = product.id">
+                <img [src]="product.image == '' ? '/assets/no-img.png' : product.image" class="card-img-top">
+                <h5><b>{{product.id}}. {{product.name == '' ? 'Product Name' : product.name}}</b></h5>
+                <p><b>Description:</b> {{product.description == '' ? 'Product description' : product.description}}</p>
+            </div>
+        </div>
+    </div>
+</div>

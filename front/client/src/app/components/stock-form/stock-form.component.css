@@ -1,0 +1,17 @@
+.distance {
+    margin: 10px 0px;
+    padding: 5px;
+}
+
+.marginTitle {
+    margin-top: 50px;
+}
+
+.pick-item {
+    opacity: 0.3;
+}
+
+.pick-item-seleccionado {
+    transition: opacity 0.5s linear;
+    opacity: 1 !important;
+}

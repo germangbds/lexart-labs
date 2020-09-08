@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row distance">
+        <h3>Stock: </h3>
+    </div>
+
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id Stock</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Id Client (Name)</th>
+                    <th scope="col">Id Product (Name)</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let stock of stocks">
+                    <th scope="row">{{stock.id}}</th>
+                    <td>{{stock.quantity}}</td>
+                    <td>{{stock.client.id}} ({{stock.client.name}})</td>
+                    <td>{{stock.product.id}} ({{stock.product.name}})</td>
+                    <td><button class="btn btn-primary" (click)="editStock(stock.id)"><i class="far fa-edit"></i></button></td>
+                    <td><button class="btn btn-danger" (click)="deleteStock(stock.id)"><i class="far fa-trash-alt"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+
+</div>
